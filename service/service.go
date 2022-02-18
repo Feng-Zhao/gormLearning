@@ -3,11 +3,11 @@ package service
 import (
 	"booklibrary/service/student"
 	"booklibrary/service/student/imp"
-	"fmt"
 )
 
 type Service struct {
-	StudentService *student.IService
+	APIS           map[string]API
+	StudentService student.IService
 }
 
 type API struct {
@@ -15,14 +15,9 @@ type API struct {
 	Func interface{}
 }
 
-var APIS map[string]API
-
-func init() {
-	APIS = make(map[string]API)
-}
-
 func (o *Service) InitApi() {
-	APIS["listStudent"] = API{Name: "listStudent", Func: fmt.Println}
+	o.APIS = make(map[string]API)
+	o.APIS["listStudent"] = API{Name: "listStudent", Func: o.StudentService.ListStudent}
 }
 
 func NewService() *Service {

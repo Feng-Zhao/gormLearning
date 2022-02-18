@@ -1,11 +1,10 @@
-package student
+package teacher
 
 import (
 	"booklibrary/model"
-
 	"gorm.io/gorm"
 )
 
 type IService interface {
-	ListStudent(db *gorm.DB) []model.Student
+	ListTeacher(db *gorm.DB) []model.Teacher
 }
