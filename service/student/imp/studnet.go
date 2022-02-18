@@ -5,8 +5,6 @@ import (
 	"fmt"
 
 	"gorm.io/gorm"
-
-	"log"
 )
 
 func (s *Service) ListStudent(db *gorm.DB) []model.Student {
@@ -20,7 +18,7 @@ func (s *Service) ListStudent(db *gorm.DB) []model.Student {
 		// fmt.Printf("student ID : %v\t|student name : %s\t|class_id : %v\t|class_name : %v\t|teacher_id : %v|teacher_name : %v\t\n",
 		// 	v.ID, v.Name, v.ClassID, v.ClassName, v.TID, v.TName)
 
-		log.Printf("student ID : %v\t|student name : %s\t|class_id : %v\t|class_name : %v\t|teacher_id : %v|teacher_name : %v\t\n",
+		fmt.Printf("student ID : %v\t|student name : %s\t|class_id : %v\t|class_name : %v\t|teacher_id : %v|teacher_name : %v\t\n",
 			v.ID, v.Name, v.ClassID, v.ClassName, v.TID, v.TName)
 	}
 	return students

@@ -1,0 +1,9 @@
+db:
+  username:
+  needpassword:
+  password:
+  ip:
+  port:
+
+
+-- rename this file to 'config.yaml' when you filled the args
