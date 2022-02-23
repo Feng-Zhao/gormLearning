@@ -18,6 +18,7 @@ type API struct {
 func (o *Service) InitApi() {
 	o.APIS = make(map[string]API)
 	o.APIS["listStudent"] = API{Name: "listStudent", Func: o.StudentService.ListStudent}
+	o.APIS["addStudnet"] = API{Name: "addStudent", Func: o.StudentService.AddStudent}
 }
 
 func NewService() *Service {

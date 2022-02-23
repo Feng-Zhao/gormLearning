@@ -82,6 +82,10 @@ func main() {
 func callFunc(f interface{}, args []string, db *gorm.DB) {
 	// 获取 type
 	t := reflect.TypeOf(f)
+	if t.Kind() != reflect.Func {
+		fmt.Println("api's func must be a function")
+		return
+	}
 	log.Printf("callfunc: %v | args: %v\n", t.Name(), args)
 	// 构建 []Value 作为参数
 	in := []reflect.Value{reflect.ValueOf(db)}
@@ -91,7 +95,7 @@ func callFunc(f interface{}, args []string, db *gorm.DB) {
 	}
 	// 检查参数个数
 	if t.NumIn() != len(in) {
-		log.Println("wrong args, please check the manual")
+		log.Println("wrong number of args, please check the manual")
 		return
 	}
 	log.Printf("%v\n", in)
@@ -104,7 +108,7 @@ func printHelpMsg() {
 	fmt.Println("help : print the help msg.")
 	fmt.Printf("\n//------------ list ------------------------\n")
 	fmt.Println("listStudent : show all students information.")
-	fmt.Println("listClass : show all classes information.")
+	//fmt.Println("listClass : show all classes information.")
 	fmt.Println("listTeacher : show all teacher information.")
-	fmt.Println("listBook : show all books information.")
+	//fmt.Println("listBook : show all books information.")
 }
