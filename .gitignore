@@ -18,3 +18,5 @@
 .idea
 
 conf/config.yaml
+
+playground.go
