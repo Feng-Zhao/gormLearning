@@ -1,0 +1,3 @@
+go run main.go
+listStudent
+addStudent {"ID":1,"Name":"s1","ClassID":1,"ClassName":"c1","TID":1,"TName":"t1"}

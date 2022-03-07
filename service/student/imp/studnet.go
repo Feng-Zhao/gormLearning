@@ -3,8 +3,6 @@ package imp
 import (
 	"booklibrary/model"
 	"fmt"
-	"log"
-	"reflect"
 
 	"gorm.io/gorm"
 )
@@ -27,20 +25,19 @@ func (s *Service) ListStudent(db *gorm.DB) []model.Student {
 	return students
 }
 
-func (s *Service) AddStudent(db *gorm.DB, id uint, name string, cid uint, cname string, tid uint, tname string) (model.Student, error) {
-	if addArgCheck(id, cid, tid) {
-		log.Println("wrong type of arg")
-		return model.Student{}, fmt.Errorf("wrong type of args")
+// insert
+func (s *Service) AddStudent(db *gorm.DB, student *model.Student) error {
+	if err := db.Create(student).Error; err != nil {
+		return err
 	}
-	student := model.Student{ID: id, Name: name, ClassID: cid, ClassName: cname, TID: tid, TName: tname}
-	return student, nil
+	return nil
 }
 
-func addArgCheck(id uint, cid uint, tid uint) bool {
-	if reflect.TypeOf(id).Kind() == reflect.Uint &&
-		reflect.TypeOf(cid).Kind() == reflect.Uint &&
-		reflect.TypeOf(cid).Kind() == reflect.Uint {
-		return true
-	}
-	return false
-}
+// func addArgCheck(id uint, cid uint, tid uint) bool {
+// 	if reflect.TypeOf(id).Kind() == reflect.Uint &&
+// 		reflect.TypeOf(cid).Kind() == reflect.Uint &&
+// 		reflect.TypeOf(cid).Kind() == reflect.Uint {
+// 		return true
+// 	}
+// 	return false
+// }
