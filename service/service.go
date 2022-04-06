@@ -2,7 +2,7 @@ package service
 
 import (
 	"booklibrary/service/student"
-	"booklibrary/service/student/imp"
+	studentImp "booklibrary/service/student/imp"
 )
 
 type Service struct {
@@ -23,6 +23,6 @@ func (o *Service) InitApi() {
 
 func NewService() *Service {
 	s := Service{}
-	s.StudentService = imp.NewService()
+	s.StudentService = studentImp.NewService()
 	return &s
 }

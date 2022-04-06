@@ -1,6 +1,7 @@
 package main
 
 import (
+	"booklibrary/config"
 	"booklibrary/service"
 	"bufio"
 	"encoding/json"
@@ -23,9 +24,11 @@ func init() {
 	log.SetFlags(log.Lshortfile | log.Ldate | log.Ltime | log.Lmsgprefix)
 	s = service.NewService()
 	s.InitApi()
+
 }
 
 func main() {
+	config.InitConfig()
 	db := dbLink()
 	// 标准输入流
 	scanner := bufio.NewScanner(os.Stdin)
@@ -104,12 +107,6 @@ func printHelpMsg() {
 }
 
 func dbLink() *gorm.DB {
-	viper.AddConfigPath("./conf")
-	viper.SetConfigName("config")
-	err := viper.ReadInConfig() // 查找并读取配置文件
-	if err != nil {             // 处理读取配置文件的错误
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
-	}
 	// 数据库URL
 	if viper.GetBool("db.needpassword") {
 		dsn = fmt.Sprintf("%v:%v@tcp(%v:%v)/test?charset=utf8&parseTime=True&loc=Local",
