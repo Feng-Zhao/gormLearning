@@ -1,8 +1,10 @@
 package main
 
 import (
-	"booklibrary/config"
+	"booklibrary/conf"
 	"booklibrary/service"
+	"flag"
+
 	"bufio"
 	"encoding/json"
 	"fmt"
@@ -28,7 +30,11 @@ func init() {
 }
 
 func main() {
-	config.InitConfig()
+	// 读取环境配置
+	envPtr := flag.String("env", "", "env")
+	// 初始化配置项
+	config.InitConfig(*envPtr)
+	// 数据库链接
 	db := dbLink()
 	// 标准输入流
 	scanner := bufio.NewScanner(os.Stdin)
